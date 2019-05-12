@@ -33,21 +33,5 @@ namespace Tyd
         {
             return Name + "(TydTable, " + Count + ")";
         }
-
-        public TydNode FindChild(string childName)
-        {
-            if(Count > 0)
-            {
-                foreach(TydNode node in Nodes)
-                {
-                    if(childName == node.Name)
-                    {
-                        return node;
-                    }
-                }
-            }
-
-            return null;
-        }
     }
 }
