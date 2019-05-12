@@ -23,12 +23,6 @@ namespace Tyd
         {
             this.nodes = new List<TydNode>();
             this.nodes.AddRange(nodes);
-
-            // Set the TydDocument as the nodes parent
-            foreach(TydNode node in nodes)
-            {
-                node.Parent = this;
-            }
         }
 
         public override string ToString()
