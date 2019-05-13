@@ -47,6 +47,14 @@ namespace Tyd
             }
         }
 
+        public byte ByteValue
+        {
+            get
+            {
+                return byte.Parse(val);
+            }
+        }
+
         public TydString(string name, string val, TydNode parent, int docLine = -1) : base(name, parent, docLine)
         {
             this.val = val;
