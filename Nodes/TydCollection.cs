@@ -13,6 +13,7 @@ namespace Tyd
         protected string attHandle;
         protected string attSource;
         protected bool attAbstract;
+        protected List<KeyValuePair<string,string>> attAdditional;
 
         //Properties
         public int Count
@@ -43,6 +44,11 @@ namespace Tyd
             set{attAbstract = value;}
         }
 
+        public List<KeyValuePair<string,string>> AdditionalAttributes
+        {
+            get { return attAdditional; }
+        }
+
         public TydNode this[int index]
         {
             get
@@ -66,6 +72,7 @@ namespace Tyd
 
         public TydCollection(string name, TydNode parent, int docLine = -1) : base(name, parent, docLine)
         {
+            attAdditional = new List<KeyValuePair<string, string>>();
         }
 
         public void SetupAttributes(string attHandle, string attSource, bool attAbstract)
@@ -73,6 +80,14 @@ namespace Tyd
             this.attHandle = attHandle;
             this.attSource = attSource;
             this.attAbstract = attAbstract;
+        }
+
+        public void SetupAttributes(string attHandle, string attSource, bool attAbstract, List<KeyValuePair<string,string>> attAdditional)
+        {
+            this.attHandle = attHandle;
+            this.attSource = attSource;
+            this.attAbstract = attAbstract;
+            this.attAdditional = attAdditional;
         }
 
         ///<summary>
@@ -84,6 +99,23 @@ namespace Tyd
             node.Parent = this;
         }
 
+        public string GetAdditionalAttributeValue(string attribute)
+        {
+            if(attAdditional != null
+                && attAdditional.Count > 0)
+            {
+                foreach(KeyValuePair<string,string> pair in attAdditional)
+                {
+                    if(pair.Key == attribute)
+                    {
+                        return pair.Value;
+                    }
+                }
+            }
+
+            return null;
+        }
+
         protected void CopyDataFrom(TydCollection other)
         {
             other.docIndexEnd = docIndexEnd;
@@ -93,6 +125,12 @@ namespace Tyd
             for (int i = 0; i < nodes.Count; i++)
             {
                 other.AddChild(nodes[i].DeepClone());
+            }
+
+            // Copy additional attribute
+            if(attAdditional != null)
+            {
+                other.attAdditional = new List<KeyValuePair<string,string>>(attAdditional);
             }
         }
     }

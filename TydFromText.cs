@@ -31,6 +31,8 @@ namespace Tyd
                 string recordAttSource = null;
                 bool recordAttAbstract = false;
 
+                List<KeyValuePair<string, string>> additionalAttributes = new List<KeyValuePair<string, string>>();
+
                 try
                 {
                     //Skip insubstantial chars
@@ -74,7 +76,7 @@ namespace Tyd
                             {
                                 case Constants.HandleAttributeName: recordAttHandle = attVal; break;
                                 case Constants.SourceAttributeName: recordAttSource = attVal; break;
-                                default: throw new Exception("Unknown attribute name '" + attName + "' at " + IndexToLocationString(doc, p));
+                                default: additionalAttributes.Add(new KeyValuePair<string, string>(attName, attVal)); break;
                             }
                         }
 
@@ -122,7 +124,7 @@ namespace Tyd
                         throw new FormatException("Expected ']' at " + IndexToLocationString(doc, p));
 
                     newTable.docIndexEnd = p;
-                    newTable.SetupAttributes(recordAttHandle, recordAttSource, recordAttAbstract);
+                    newTable.SetupAttributes(recordAttHandle, recordAttSource, recordAttAbstract, additionalAttributes);
                     yield return newTable;
 
                     //Move pointer one past the closing bracket
@@ -150,7 +152,8 @@ namespace Tyd
                         throw new FormatException("Expected " + Constants.ListEndChar + " at " + IndexToLocationString(doc, p));
 
                     newList.docIndexEnd = p;
-                    newList.SetupAttributes(recordAttHandle, recordAttSource, recordAttAbstract);
+                    newList.SetupAttributes(recordAttHandle, recordAttSource, recordAttAbstract, additionalAttributes);
+
                     yield return newList;
 
                     //Move pointer one past the closing bracket

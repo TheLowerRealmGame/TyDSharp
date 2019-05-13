@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Tyd
@@ -160,6 +161,17 @@ namespace Tyd
             if (node.AttributeSource != null)
             {
                 AppendWithWhitespace(Constants.AttributeStartChar + Constants.SourceAttributeName + " " + node.AttributeSource, sb, indent, appendedSomething);
+                appendedSomething = true;
+            }
+
+            if(node.AdditionalAttributes != null
+                && node.AdditionalAttributes.Count > 0)
+            {
+                foreach(KeyValuePair<string, string> pair in node.AdditionalAttributes)
+                {
+                    AppendWithWhitespace(Constants.AttributeStartChar + pair.Key + " " + pair.Value, sb, indent, appendedSomething);
+                }
+
                 appendedSomething = true;
             }
 
