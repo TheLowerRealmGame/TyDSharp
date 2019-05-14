@@ -30,3 +30,11 @@ TydFromText\.cs\.meta
 TydToText\.cs\.meta
 
 TydXml\.cs\.meta
+
+Examples\.meta
+
+Examples/TileData\.cs\.meta
+
+Examples/TileDataReader\.cs\.meta
+
+Examples/tiles\.tyd\.meta
