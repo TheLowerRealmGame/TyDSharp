@@ -116,6 +116,12 @@ namespace Tyd
             return null;
         }
 
+        public void InsertChild(TydNode node, int index)
+        {
+            nodes.Insert(index, node);
+            node.Parent = this;
+        }
+
         protected void CopyDataFrom(TydCollection other)
         {
             other.docIndexEnd = docIndexEnd;
