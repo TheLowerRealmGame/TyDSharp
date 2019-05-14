@@ -49,8 +49,6 @@ namespace Example
 
                     data.ReadData(tydTable);
 
-                    UnityEngine.Debug.Log(data.Name);
-
                     tilesData.Add(data);
                 }
             }
