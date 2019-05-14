@@ -1,0 +1,35 @@
+# Tiles configuration file
+
+TileBase *handle TileBase *abstract
+{
+	backTile false
+	transparent false
+	solid true
+	climbable false
+	mineable false
+}
+
+AirTile *source TileBase
+{
+	id	0
+	tag base.air
+	name  "Air Tile"
+	transparent true
+	solid false
+}
+
+FrontGrassTile *source TileBase
+{
+	id 1
+	tag base.frontgrass
+	name "Front Grass Tile"
+	mineable true
+}
+
+FrontDirtTile *source TileBase
+{
+	id 2
+	tag base.frontdirt
+	name "Front Dirt Tile"
+	mineable true
+}
