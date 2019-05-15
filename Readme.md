@@ -1,5 +1,7 @@
 # TyDSharp
 
+[Official TyDSharp here](https://github.com/tyd-lang/TyDSharp)
+
 A simple C# implementation of TyD - Tynan's Tiny Data Language.
 
 [Read the TyD spec here.](https://github.com/tyd-lang/TyD)
