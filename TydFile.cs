@@ -102,7 +102,6 @@ namespace Tyd
             }
         }
 
-        //TODO: Fix
         ///<summary>
         /// Write to a file, overwriting any file present.
         /// If a path is provided, the file's path is changed to that new path before saving. Otherwise, the current path is used.
