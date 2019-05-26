@@ -27,6 +27,7 @@ namespace Tyd
                 string recordAttHandle = null;
                 string recordAttSource = null;
                 bool recordAttAbstract = false;
+                bool recordAttNoInherit = false;
 
                 List<KeyValuePair<string, string>> additionalAttributes = new List<KeyValuePair<string, string>>();
 
@@ -62,6 +63,11 @@ namespace Tyd
                         {
                             //Just reading the abstract name indicates it's abstract, no value is needed
                             recordAttAbstract = true;
+                        }
+                        else if( attName == Constants.NoInheritAttributeName )
+                        {
+                            //Just reading the noinherit name indicates it's noinherit, no value is needed
+                            recordAttNoInherit = true;
                         }
                         else
                         {
@@ -111,7 +117,7 @@ namespace Tyd
                         throw new FormatException("Expected '" + Constants.TableEndChar + "' at " + IndexToLocationString(text, p));
 
                     newTable.docIndexEnd = p;
-                    newTable.SetupAttributes(recordAttHandle, recordAttSource, recordAttAbstract, additionalAttributes);
+                    newTable.SetupAttributes(recordAttHandle, recordAttSource, recordAttAbstract, recordAttNoInherit, additionalAttributes);
                     yield return newTable;
 
                     //Move pointer one past the closing bracket
@@ -139,7 +145,7 @@ namespace Tyd
                         throw new FormatException("Expected " + Constants.ListEndChar + " at " + IndexToLocationString(text, p));
 
                     newList.docIndexEnd = p;
-                    newList.SetupAttributes(recordAttHandle, recordAttSource, recordAttAbstract, additionalAttributes);
+                    newList.SetupAttributes(recordAttHandle, recordAttSource, recordAttAbstract, recordAttNoInherit, additionalAttributes);
 
                     yield return newList;
 
