@@ -50,8 +50,8 @@ namespace Tyd
             get{return attNoInherit;}
             set{attNoInherit = value;}
         }
-
         public List<KeyValuePair<string,string>> AdditionalAttributes
+
         {
             get { return attAdditional; }
         }
@@ -79,7 +79,6 @@ namespace Tyd
 
         public TydCollection(string name, TydNode parent, int docLine = -1) : base(name, parent, docLine)
         {
-            attAdditional = new List<KeyValuePair<string, string>>();
         }
 
         public void SetupAttributes(string attHandle, string attSource, bool attAbstract, bool attNoInherit)
@@ -98,10 +97,6 @@ namespace Tyd
             this.attNoInherit = attNoInherit;
             this.attAdditional = attAdditional;
         }
-
-        ///<summary>
-        /// Add a node as a child of this node, and link it as a parent.
-        ///</summary>
         public void AddChild(TydNode node)
         {
             nodes.Add(node);

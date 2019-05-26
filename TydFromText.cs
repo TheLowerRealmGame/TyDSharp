@@ -30,7 +30,6 @@ namespace Tyd
                 bool recordAttNoInherit = false;
 
                 List<KeyValuePair<string, string>> additionalAttributes = new List<KeyValuePair<string, string>>();
-
                 try
                 {
                     //Skip insubstantial chars
@@ -146,7 +145,6 @@ namespace Tyd
 
                     newList.docIndexEnd = p;
                     newList.SetupAttributes(recordAttHandle, recordAttSource, recordAttAbstract, recordAttNoInherit, additionalAttributes);
-
                     yield return newList;
 
                     //Move pointer one past the closing bracket
